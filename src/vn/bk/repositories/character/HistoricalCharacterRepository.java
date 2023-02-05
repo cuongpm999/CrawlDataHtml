@@ -73,6 +73,8 @@ public class HistoricalCharacterRepository implements IHistoricalCharacterReposi
                 stringBuilder.append(line);
             }
             
+            if(stringBuilder.length() == 0) return null;
+            
             return MyObjectMapper.get().readValue(stringBuilder.toString(), new TypeReference<List<HistoricalCharacter>>(){});
         } catch (FileNotFoundException ex) {
            ex.printStackTrace();
@@ -85,7 +87,9 @@ public class HistoricalCharacterRepository implements IHistoricalCharacterReposi
 
     @Override
     public List<HistoricalCharacter> searchByName(String name) {
-        return loadAllData().stream().filter(character -> character.getFullName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
+        List<HistoricalCharacter> characters = loadAllData();
+        if(characters == null) return null;
+        return characters.stream().filter(character -> character.getFullName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
     
 
