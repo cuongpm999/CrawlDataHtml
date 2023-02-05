@@ -13,6 +13,8 @@ public class Constant {
     public static int NUMBER_THREAD = 1;
     
     public static final boolean CRAWL_HISTORICAL_CHARACTER = false;
+    public static final boolean CRAWL_DYNASTY = true;
     public static final String SOURCE_HISTORICAL_CHARACTER = "src/vn/bk/repositories/character/character.json";
+    public static final String SOURCE_DYNASTY = "src/vn/bk/repositories/dynasty/dynasty.json";
     
 }
