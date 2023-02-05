@@ -15,4 +15,7 @@ public class Constant {
     public static final boolean CRAWL_HISTORICAL_CHARACTER = false;
     public static final String SOURCE_HISTORICAL_CHARACTER = "src/vn/bk/repositories/character/character.json";
     
+    public static final boolean CRAWL_HISTORICAL_EVENT = false;
+    public static final String SOURCE_HISTORICAL_EVENT = "src/vn/bk/repositories/event/event.json";
+    
 }

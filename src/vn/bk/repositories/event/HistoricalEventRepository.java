@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package vn.bk.repositories.character;
+package vn.bk.repositories.event;
 
+import vn.bk.repositories.character.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.BufferedReader;
@@ -22,29 +23,30 @@ import org.json.JSONArray;
 import vn.bk.config.Constant;
 import vn.bk.json.MyObjectMapper;
 import vn.bk.models.character.HistoricalCharacter;
+import vn.bk.models.event.HistoricalEvent;
 
 /**
  *
  * @author cuongpham
  */
-public class HistoricalCharacterRepository implements IHistoricalCharacterRepository {
+public class HistoricalEventRepository implements IHistoricalEventRepository {
 
-    private final List<HistoricalCharacter> results = new ArrayList<>();
+    private final List<HistoricalEvent> results = new ArrayList<>();
 
     @Override
-    public void addOne(HistoricalCharacter character) {
-        results.add(character);
+    public void addOne(HistoricalEvent event) {
+        results.add(event);
     }
 
     @Override
-    public void addMany(List<HistoricalCharacter> characters) {
-        results.addAll(characters);
+    public void addMany(List<HistoricalEvent> events) {
+        results.addAll(events);
     }
 
     @Override
     public void save() {
         try {
-            File file = new File(Constant.SOURCE_HISTORICAL_CHARACTER);
+            File file = new File(Constant.SOURCE_HISTORICAL_EVENT);
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -58,9 +60,9 @@ public class HistoricalCharacterRepository implements IHistoricalCharacterReposi
     }
 
     @Override
-    public List<HistoricalCharacter> loadAllData() {
+    public List<HistoricalEvent> loadAllData() {
         try {
-            File file = new File(Constant.SOURCE_HISTORICAL_CHARACTER);
+            File file = new File(Constant.SOURCE_HISTORICAL_EVENT);
             if (!file.exists()) {
                 return null;
             }
@@ -75,7 +77,7 @@ public class HistoricalCharacterRepository implements IHistoricalCharacterReposi
             
             if(stringBuilder.length() == 0) return null;
             
-            return MyObjectMapper.get().readValue(stringBuilder.toString(), new TypeReference<List<HistoricalCharacter>>(){});
+            return MyObjectMapper.get().readValue(stringBuilder.toString(), new TypeReference<List<HistoricalEvent>>(){});
         } catch (FileNotFoundException ex) {
            ex.printStackTrace();
             return null;
@@ -86,10 +88,10 @@ public class HistoricalCharacterRepository implements IHistoricalCharacterReposi
     }
 
     @Override
-    public List<HistoricalCharacter> searchByName(String name) {
-        List<HistoricalCharacter> characters = loadAllData();
-        if(characters == null) return null;
-        return characters.stream().filter(character -> character.getFullName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
+    public List<HistoricalEvent> searchByName(String name) {
+        List<HistoricalEvent> events = loadAllData();
+        if(events == null) return null;
+        return events.stream().filter(event -> event.getName().toLowerCase().contains(name.toLowerCase())).collect(Collectors.toList());
     }
     
 

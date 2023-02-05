@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import vn.bk.controllers.character.CharacterController;
+import vn.bk.controllers.event.EventController;
 import vn.bk.models.character.HistoricalCharacter;
 import vn.bk.views.MenuView;
 import vn.bk.views.character.CharacterView;
@@ -37,6 +38,12 @@ public class MenuController {
                 setVisible(false);
                 CharacterController characterController = new CharacterController();
                 characterController.setVisible(true);
+            }
+            
+            if (e.getSource() == menuView.getjButton5()) {
+                setVisible(false);
+                EventController eventController = new EventController();
+                eventController.setVisible(true);
             }
 
         }

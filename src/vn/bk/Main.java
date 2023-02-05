@@ -9,17 +9,21 @@ import vn.bk.controllers.MenuController;
 import vn.bk.controllers.character.CharacterController;
 import vn.bk.repositories.character.HistoricalCharacterRepository;
 import vn.bk.services.character.CrawlHistoricalCharacter;
+import vn.bk.services.event.CrawlHistoricalEvent;
 
 /**
  *
  * @author cuongpham
  */
 public class Main {
+
     public static void main(String[] args) {
         CrawlHistoricalCharacter crawlHistoricalCharacter = new CrawlHistoricalCharacter();
-        
+        CrawlHistoricalEvent crawlHistoricalEvent = new CrawlHistoricalEvent();
+
         MenuController menuController = new MenuController();
         menuController.setVisible(true);
+
     }
-    
+
 }
